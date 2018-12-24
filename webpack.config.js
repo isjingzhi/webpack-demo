@@ -11,28 +11,36 @@ const webpack = require('webpack');
 module.exports = {
   // 开发过程中建议使用 development，打包速度快
   // 上线的时候使用 production 模式，打包速度慢，因为要做压缩等优化处理
-  mode:"development",
+  mode: "development",
   devtool: 'inline-source-map', // 加入源代码地图，调试信息可以看到我们的源代码信息
-  entry:"./src/main.js", // 打包指定的入口
+  entry: "./src/main.js", // 打包指定的入口
+  output: { // 打包指定的出口
+    filename: "bundle.js", // 打包结果的文件名
+    path: path.join(__dirname, './dist/') // 打包结果文件存放的目录路径(注:必须是绝对路径):首先引入的是 nodejs 中的path模块,用path.join方法来动态获取绝对路径
+  },
+  // devServer 用来专门为 webpack-dev-server 配置的
+  // contentBase 用来设置我们开发服务器的 www 目录
+  devServer: {
+    contentBase: './dist',
+    hot: true // 开启热更新
+  },
   plugins: [
     // HtmlWebpackPlugin 插件会将你指定的 template 给打包到结果目录中
     // 它还能帮你实现 html 压缩处理
-    new CleanWebpackPlugin(['./dist']),// 打包之前清除dist目录
+    new CleanWebpackPlugin(['./dist']), // 打包之前清除dist目录
     new HtmlWebpackPlugin({
       title: 'Output Management',
-      template:'./index.html'
-    })
+      template: './index.html'
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
-  output:{ // 打包指定的出口
-    filename:"bundle.js", // 打包结果的文件名
-    path:path.join(__dirname,'./dist/')  // 打包结果文件存放的目录路径(注:必须是绝对路径):首先引入的是 nodejs 中的path模块,用path.join方法来动态获取绝对路径
-  },
-  module:{
-    rules:[
+  module: {
+    rules: [
       // 1.打包 css 模块(开发模式 ==> 顺序不能错)
       {
-        test:/\.css$/,
-        use:[
+        test: /\.css$/,
+        use: [
           "style-loader",
           "css-loader"
         ]
@@ -40,7 +48,7 @@ module.exports = {
       // 2.打包图片(开发模式)
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use:[
+        use: [
           'file-loader'
         ]
       },
@@ -67,21 +75,21 @@ module.exports = {
           loader: "less-loader"
         }]
       },
-      {
-        // ES6 转 ES5 [babel-loader](https://webpack.js.org/loaders/babel-loader/)
-        // yarn add --dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
-        // 当加载以 .js 结尾的资源的时候，使用 babel-loader 对 ES6 => ES5 处理
-        // exclude 表示排除第三方包转码
-        // 不仅做了转码处理，还有代码优化
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      },
+      // {
+      //   // ES6 转 ES5 [babel-loader](https://webpack.js.org/loaders/babel-loader/)
+      //   // yarn add --dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
+      //   // 当加载以 .js 结尾的资源的时候，使用 babel-loader 对 ES6 => ES5 处理
+      //   // exclude 表示排除第三方包转码
+      //   // 不仅做了转码处理，还有代码优化
+      //   test: /\.js$/,
+      //   exclude: /(node_modules|bower_components)/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       presets: ['@babel/preset-env']
+      //     }
+      //   }
+      // },
     ]
   }
 }

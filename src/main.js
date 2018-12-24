@@ -21,7 +21,7 @@ console.log(number);
   ③ 例如 npm install --save-dev style-loader css-loader 并在 webpack.config.js 进行配置;
 */
 import './css/main.css';
-// import './css/reset.css'; // 清除默认样式 ==> 行不通
+import './css/style.css'; 
 
 // 3. 打包字体资源
 // ① bootstrap 4.0 移除了内置字体图标==>bootstrap 3.x 中内置了字体图标
@@ -31,3 +31,23 @@ import 'font-awesome/css/font-awesome.min.css'
 
 // 4. 打包less资源  ====>有问题
 // import './less/style.less'
+
+// 5. 打包图片资源
+// import Icon from './icon.png';
+//    var myIcon = new Image();
+//    myIcon.src = Icon;
+
+//    element.appendChild(myIcon);
+
+// 6. 开启热更新
+// 6.1 首先加载webpack
+// 6.2webpack-dev-server 配置的
+  // contentBase 用来设置我们开发服务器的 www 目录
+  // devServer: {
+  //   contentBase: './dist',
+  //   hot: true // 开启热更新
+  // }, 
+// 6.3 plugins 中添加代码
+
+// new webpack.NamedModulesPlugin(),
+// new webpack.HotModuleReplacementPlugin()

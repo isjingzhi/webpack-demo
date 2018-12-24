@@ -266,6 +266,7 @@ devtool: 'inline-source-map',
 
 > 参考文档：https://webpack.js.org/guides/development/#using-webpack-dev-server
 ```
+安装:npm install --save-dev webpack-dev-server
 第一步:装包并修改配置文件
 第二部:添加package.json中"scripts"的代码:"dev": "webpack-dev-server --open"
 执行命令:yarn run dev

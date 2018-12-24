@@ -9,15 +9,16 @@ html {
     font-size: 100%;
 }
 
-/* IE6对positon:fixed的单独处理修正IE6滚动抖动的bug */
+/* IE6对positon:fixed的单独处理修正IE6滚动抖动的bug
+注意(清除默认样式的css在webpack中不能正常打包,需要注释掉代码:background-image: url(about:blank);)
 *html,
 *html body {
     background-image: url(about:blank);
-    /*修正IE6滚动抖动的bug*/
+    修正IE6滚动抖动的bug
     background-attachment: fixed;
-    /*根据自己实际，非必需*/
+    根据自己实际，非必需
 }
-
+ */
 /* 内外边距通常让各个浏览器样式的表现位置不同 */
 body,
 div,
@@ -346,6 +347,9 @@ textarea {
     .container {
         width: 1200px;
     }
+    body{
+        background-color: tomato;
+      }
 }
 
 /*中等屏幕 >992px && <1200*/
@@ -353,6 +357,9 @@ textarea {
     .container {
         width: 980px;
     }
+    body{
+        background-color: green;
+      }
 }
 
 /* pad > 768px&& <992px   */
@@ -360,6 +367,9 @@ textarea {
     .container {
         width: 768px;
     }
+    body{
+        background-color: skyblue;
+      }
 }
 
 /*手机 <768px*/
@@ -367,6 +377,9 @@ textarea {
     .container {
         width: 100%;
     }
+    body{
+        background-color: pink;
+      }
 }
 /* 横/坚屏 */
 /* orientation: portrait | landscape(横屏) */
