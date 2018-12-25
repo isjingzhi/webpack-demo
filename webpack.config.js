@@ -89,21 +89,21 @@ module.exports = {
           loader: "less-loader"
         }]
       },
-      // {
-      //   // ES6 转 ES5 [babel-loader](https://webpack.js.org/loaders/babel-loader/)
-      //   // yarn add --dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
-      //   // 当加载以 .js 结尾的资源的时候，使用 babel-loader 对 ES6 => ES5 处理
-      //   // exclude 表示排除第三方包转码
-      //   // 不仅做了转码处理，还有代码优化
-      //   test: /\.js$/,
-      //   exclude: /(node_modules|bower_components)/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       presets: ['@babel/preset-env']
-      //     }
-      //   }
-      // },
+      {
+        // ES6 转 ES5 [babel-loader](https://webpack.js.org/loaders/babel-loader/)
+        // yarn add --dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
+        // 当加载以 .js 结尾的资源的时候，使用 babel-loader 对 ES6 => ES5 处理
+        // exclude 表示排除第三方包转码
+        // 不仅做了转码处理，还有代码优化
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       {
         test:/\.vue$/,
         use:"vue-loader"

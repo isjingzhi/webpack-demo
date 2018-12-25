@@ -178,6 +178,8 @@ npm install font-awesome --save
 
 > 参考文档：https://webpack.js.org/loaders/less-loader/
 ```
+1. 首先安装less ==> npm i less
+2. 然后 npm install less-loader --save-dev
   {
     // 当加载到以 .less 结尾的资源的时候使用：
     //   less-loader 编译成 css
@@ -223,7 +225,9 @@ use: [{
 >官方网站==>在线编译:http://babeljs.io/
 ```
 注:应当安装最新版本
-// yarn add --dev "babel-loader@^8.0.0-beta" @babel/core @babel/preset-env
+注意(打个npm 无法安装时出现错误==>A complete log of this run can be found in”
+改用yarn 安装==>有问题)
+// yarn add  -D babel-loader @babel/core @babel/preset-env
 // 当加载以 .js 结尾的资源的时候，使用 babel-loader 对 ES6 => ES5 处理
 // exclude 表示排除第三方包转码
 // 不仅做了转码处理，还有代码优化

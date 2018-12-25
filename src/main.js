@@ -14,7 +14,15 @@ import {foo,number} from "./js/foo";
 fn()
 console.log(foo);
 console.log(number);
-
+var obj = {
+  birth: 1990,
+  getAge: function () {
+      var b = this.birth; // 1990
+      var fn = () => new Date().getFullYear() - this.birth; // this指向obj对象
+      return fn();
+  }
+};
+obj.getAge();
 // 2.打包 css
 /*
   ① webpack 打包执行代码的时候会把 css 文件模块转成一个js模块然后再浏览器运行期间生成一个 style 节点插入 head 中;
@@ -30,8 +38,8 @@ import './css/style.css';
 // ② npm install font-awesome --save 
 // import 'font-awesome/css/font-awesome.min.css'
 
-// 4. 打包less资源  ====>有问题
-// import './less/style.less'
+// 4. 打包less资源 
+import './less/style.less'
 
 // 5. 打包图片资源
 // import Icon from './icon.png';
