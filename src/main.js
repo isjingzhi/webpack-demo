@@ -1,8 +1,9 @@
 // 1. 打包js
-import fn from "./foo";
-
+import fn from "./js/foo";
+import $ from 'jquery';
+$('#bot').html(123)
 // 加载export成员
-import {foo,number} from "./foo";
+import {foo,number} from "./js/foo";
 /*
   // 一次性加载所有成员 (包括 default)
   import * as fooModule from "./foo";
@@ -27,7 +28,7 @@ import './css/style.css';
 // ① bootstrap 4.0 移除了内置字体图标==>bootstrap 3.x 中内置了字体图标
 // import 'bootstrap/dist/css/bootstrap.css'
 // ② npm install font-awesome --save 
-import 'font-awesome/css/font-awesome.min.css'
+// import 'font-awesome/css/font-awesome.min.css'
 
 // 4. 打包less资源  ====>有问题
 // import './less/style.less'
@@ -51,3 +52,5 @@ import 'font-awesome/css/font-awesome.min.css'
 
 // new webpack.NamedModulesPlugin(),
 // new webpack.HotModuleReplacementPlugin()
+
+// 7. 打包 vue 资源

@@ -18,11 +18,14 @@ module.exports = {
     filename: "bundle.js", // 打包结果的文件名
     path: path.join(__dirname, './dist/') // 打包结果文件存放的目录路径(注:必须是绝对路径):首先引入的是 nodejs 中的path模块,用path.join方法来动态获取绝对路径
   },
+  resolve:{
+    extensions:[".js",".css",".json",".vue"]
+  },
   // devServer 用来专门为 webpack-dev-server 配置的
   // contentBase 用来设置我们开发服务器的 www 目录
   devServer: {
     contentBase: './dist',
-    hot: true // 开启热更新
+    hot: true // 开启热更新 ==> 注意(当热更新不起作用的时候,可以把true改成false进行尝试然后重启)
   },
   plugins: [
     // HtmlWebpackPlugin 插件会将你指定的 template 给打包到结果目录中
@@ -46,10 +49,21 @@ module.exports = {
         ]
       },
       // 2.打包图片(开发模式)
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: [
+      //     'file-loader'
+      //   ]
+      // },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader'
+        use:[
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
         ]
       },
       // 3.打包字体资源
@@ -90,6 +104,10 @@ module.exports = {
       //     }
       //   }
       // },
+      {
+        test:/\.vue$/,
+        use:"vue-loader"
+      }
     ]
   }
 }

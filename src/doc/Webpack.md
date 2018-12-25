@@ -283,7 +283,7 @@ devtool: 'inline-source-map',
 1.首先加载webpack==>const webpack = require('webpack')
 2.devServer: {
     contentBase: './dist',
-    hot: true // 开启热更新
+    hot: true // 开启热更新.注意(当热更新不起作用的时候,可以把true改成false进行尝试然后重启
   }
 3.plugins中添加代码
 new webpack.NamedModulesPlugin(),
